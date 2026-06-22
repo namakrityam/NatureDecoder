@@ -1436,44 +1436,9 @@ body {
     padding: 32px 16px;
   }
 
-  /* Adjust padding of result screen on mobile to match navbar alignment */
+  /* Adjust padding of result screen on mobile to give cards more space */
   #screen-result.active {
-    padding: 80px 12px 40px;
-  }
-
-  /* Contain all result screen content within viewport width */
-  #screen-result .main-content-inner {
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
-  .analyzing-container {
-    padding: 60px 0;
-    overflow-wrap: break-word;
-    word-break: break-word;
-  }
-
-  .analysis-title {
-    font-size: 20px;
-    word-break: break-word;
-  }
-
-  .analysis-subtitle {
-    word-break: break-word;
-  }
-
-  .report-paper {
-    overflow-x: hidden;
-    word-break: break-word;
-  }
-
-  .report-product-name {
-    font-size: 20px;
-    word-break: break-word;
-  }
-
-  .score-assessment-desc {
-    word-break: break-word;
+    padding: 12px 12px 40px;
   }
 
   /* Result Grid collapses to single column */
@@ -1636,15 +1601,6 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-/* Prevent double flex gap when logo+name are wrapped in an anchor on subpages */
-.nav-brand .brand-link {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  color: inherit;
 }
 
 .nav-links {
