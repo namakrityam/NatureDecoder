@@ -723,10 +723,13 @@ Provide your analysis in a clear, consumer-friendly manner that helps someone ma
 
     // --- UTILITY LOAD CONFIG ---
     async function loadConfig() {
-        // Prefer parent app .env, then compare-local .env1 override
-        await fetchEnvFile('../.env');
+        // Prefer parent app .env, then compare-local .env1 override, then Vercel Serverless Function fallback
+        let loaded = await fetchEnvFile('../.env');
+        if (!loaded && !isValidApiKey(GEMINI_API_KEY)) {
+            loaded = await fetchEnvFile('./.env1');
+        }
         if (!isValidApiKey(GEMINI_API_KEY)) {
-            await fetchEnvFile('./.env1');
+            await fetchEnvFile('/api/env');
         }
 
         applyGeminiEndpoints();

@@ -63,7 +63,11 @@ let animationFrameId = null;
  * ------------------------------------------------------------- */
 async function loadConfig() {
   try {
-    const response = await fetch('/.env');
+    let response = await fetch('/.env');
+    if (!response.ok) {
+      // Fallback to Vercel Serverless Function
+      response = await fetch('/api/env');
+    }
     if (!response.ok) {
       console.warn('.env file not found, falling back to Demo Mode.');
       state.isDemoMode = true;
