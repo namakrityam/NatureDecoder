@@ -12,7 +12,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -48,18 +49,22 @@
       </div>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path class="line-t" d="M3 6H21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-          <path class="line-m" d="M3 12H21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-          <path class="line-b" d="M3 18H21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path class="line-t" d="M3 6H21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+          <path class="line-m" d="M3 12H21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+          <path class="line-b" d="M3 18H21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
         </svg>
       </button>
       <nav class="nav-links mobile-drawer" id="nav-links">
-        <a href="#hero">Home</a>
-        <a href="#about">About</a>
+        <a href="index.html">Home</a>
+        <a href="#about" class="desktop-only">About</a>
         <a href="#upload-section" class="nav-cta">Analyze</a>
         <a href="compare/compare.html">Compare</a>
-         <a href="alternative/alternative.html">Alternative</a>
-        <a href="#how-it-works">How It Works</a>
+        <a href="alternative/alternative.html">Alternative</a>
+        <a href="#how-it-works" class="desktop-only">How It Works</a>
+        
+        <div class="mobile-menu-footer">
+          This is a Food Scan AI product Developed by Kanak Goel
+        </div>
       </nav>
     </div>
   </header>
@@ -190,7 +195,9 @@
               <!-- Error Message Banner -->
               <div class="error-banner hidden" id="error-banner">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
                 <span id="error-banner-text">Please upload a food packaging image.</span>
               </div>
@@ -435,7 +442,7 @@
               </div>
 
               <div class="report-layout-grid">
-                                <!-- Left Column: Health Score (Important Block) -->
+                <!-- Left Column: Health Score (Important Block) -->
                 <div class="score-card-outer">
                   <!-- 2. OVERALL HEALTH SCORE -->
                   <div class="score-card">
@@ -581,7 +588,7 @@
           backdrop.classList.toggle('active', isOpen);
           document.body.classList.toggle('nav-open', isOpen);
         });
-        
+
         backdrop.addEventListener('click', closeMenu);
 
         document.addEventListener('click', (e) => {
