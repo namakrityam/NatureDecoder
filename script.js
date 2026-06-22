@@ -119,6 +119,11 @@ function updateFormValidation() {
   state.productName = inputProductName.value.trim();
   const isValid = state.productName.length > 0 && state.hasImage;
   btnAnalyze.disabled = !isValid;
+
+  const errorBanner = document.getElementById('error-banner');
+  if (errorBanner) {
+    errorBanner.classList.add('hidden');
+  }
 }
 
 // Listen to input changes
@@ -339,16 +344,20 @@ async function runGeminiAnalysis(imageFile, productName) {
   const mimeType = base64DataUrl.substring(5, base64DataUrl.indexOf(';'));
   const base64Content = base64DataUrl.split(',')[1];
 
-  const systemPrompt = `You are an expert clinical nutritionist and food safety scientist analyzing a product named "${productName}". 
+  const systemPrompt = `You are an expert clinical nutritionist and food safety scientist.
+Your task is to analyze the attached packaging label image for a product named "${productName}".
 
-Review the attached packaging label image and extract the actual nutrients, values, and ingredients directly from the image.
-If the image is unreadable, estimate the real nutritional values and ingredients for the product named "${productName}".
+FIRST, verify if the image represents a food product, food packaging, an ingredient list, or a nutrition facts table.
+- If the image is NOT a food product or food packaging label (for example, if it is a photo of a person, animal, vehicle, landscape, document, or completely unrelated/illegible image), you MUST set "isValidFoodLabel" to false and provide a helpful error message in "errorMessage". Do NOT estimate or guess nutrients/ingredients in this case.
+- If the image IS a valid food product/packaging label, you MUST set "isValidFoodLabel" to true and extract the actual nutrients, values, and ingredients directly from the image. If some elements are unreadable, you may estimate only the missing parts for "${productName}".
 
 You MUST respond ONLY with a valid, raw JSON object. Your entire response must be parseable by JSON.parse().
 Do NOT calculate a score. Do NOT assign risk tags. The application will handle the math.
 
 The JSON structure must exactly match this format:
 {
+  "isValidFoodLabel": true or false,
+  "errorMessage": "Please upload a food packaging image",
   "name": "REAL PRODUCT NAME",
   "nutrients": {
     "Nutrient Name 1": "extracted value with unit",
@@ -362,9 +371,10 @@ The JSON structure must exactly match this format:
 }
 
 CRITICAL RULES:
-1. Under the "nutrients" object, extract and list ALL nutrients found. Ensure values have correct units (e.g. kcal, g, mg, mcg, %).
-2. Under "ingredients", list just the string names of the ingredients.
-3. Do NOT wrap the JSON in markdown code blocks like \`\`\`json. Return only raw JSON.
+1. If the image is not a food packaging label, set "isValidFoodLabel" to false.
+2. Under the "nutrients" object, extract and list ALL nutrients found. Ensure values have correct units (e.g. kcal, g, mg, mcg, %).
+3. Under "ingredients", list just the string names of the ingredients.
+4. Do NOT wrap the JSON in markdown code blocks like \`\`\`json. Return only raw JSON.
 `;
 
   let lastError = null;
@@ -1073,6 +1083,10 @@ async function handleAnalysisPipeline() {
       // Parse the raw JSON extracted by Gemini
       const rawExtractedJson = parseJsonResponse(reasoningOutput);
 
+      if (rawExtractedJson.isValidFoodLabel === false) {
+        throw new Error("NOT_FOOD_LABEL: " + (rawExtractedJson.errorMessage || "Please upload a food packaging image."));
+      }
+
       // Pass the raw text through the Deterministic JS engine for mapping, scoring, and formatting
       const report = processNutritionalData(rawExtractedJson);
 
@@ -1080,6 +1094,34 @@ async function handleAnalysisPipeline() {
     }
   } catch (error) {
     console.error("Analysis pipeline error:", error);
+
+    // Check if it is our custom validation error
+    if (error.message && error.message.startsWith("NOT_FOOD_LABEL: ")) {
+      const errMsg = error.message.replace("NOT_FOOD_LABEL: ", "");
+      
+      // Stop the analysis screen overlays
+      screenResult.classList.remove('active');
+      analyzingState.classList.add('hidden');
+      state.isAnalyzing = false;
+      
+      // Return to input/homepage screen
+      screenInput.classList.add('active');
+      
+      // Display the error banner
+      const errorBanner = document.getElementById('error-banner');
+      const errorBannerText = document.getElementById('error-banner-text');
+      if (errorBanner && errorBannerText) {
+        errorBannerText.textContent = errMsg;
+        errorBanner.classList.remove('hidden');
+        
+        // Scroll back down to the upload area
+        const uploadSection = document.getElementById('upload-section');
+        if (uploadSection) {
+          uploadSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+      return;
+    }
 
     // Recovery jump to completion
     markStepDone(0);
