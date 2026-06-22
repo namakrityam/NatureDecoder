@@ -19,6 +19,7 @@ const screenInput = document.getElementById('screen-input');
 const screenResult = document.getElementById('screen-result');
 const inputProductName = document.getElementById('product-name');
 const fileInput = document.getElementById('file-input');
+const cameraInput = document.getElementById('camera-input');
 const uploadZone = document.getElementById('upload-zone');
 const uploadEmpty = document.getElementById('upload-empty');
 const uploadPreviewContainer = document.getElementById('upload-preview-container');
@@ -133,11 +134,26 @@ inputProductName.addEventListener('input', updateFormValidation);
  * FILE UPLOAD & PREVIEW MANAGEMENT
  * ------------------------------------------------------------- */
 uploadZone.addEventListener('click', (e) => {
-  if (e.target.closest('#btn-remove') || e.target === fileInput) return;
-  fileInput.click();
+  if (e.target.closest('#btn-remove') || e.target === fileInput || e.target === cameraInput) return;
+  
+  const cameraBtn = e.target.closest('#btn-choice-camera');
+  const galleryBtn = e.target.closest('#btn-choice-gallery');
+  
+  if (cameraBtn) {
+    cameraInput.click();
+  } else if (galleryBtn) {
+    fileInput.click();
+  } else {
+    fileInput.click();
+  }
 });
 
 fileInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  handleFileSelection(file);
+});
+
+cameraInput.addEventListener('change', (e) => {
   const file = e.target.files[0];
   handleFileSelection(file);
 });
@@ -201,6 +217,7 @@ btnRemove.addEventListener('click', (e) => {
 
 function resetUploadState() {
   fileInput.value = '';
+  cameraInput.value = '';
   imagePreview.src = '#';
   state.imageFile = null;
   state.hasImage = false;

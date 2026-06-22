@@ -153,6 +153,7 @@
                 <label class="input-label">Nutrition Label Image</label>
                 <div class="upload-zone" id="upload-zone">
                   <input type="file" id="file-input" accept="image/*" class="file-hidden">
+                  <input type="file" id="camera-input" accept="image/*" capture="environment" class="file-hidden">
 
                   <!-- Empty State -->
                   <div class="upload-empty-state" id="upload-empty">
@@ -168,7 +169,24 @@
                       </svg>
                     </div>
                     <h3 class="upload-title">Drag & drop your label here</h3>
-                    <p class="upload-desc">or click to browse from your device</p>
+                    <p class="upload-desc">or select an option below</p>
+                    <div class="upload-actions">
+                      <button type="button" class="btn-upload-choice" id="btn-choice-gallery">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                          <circle cx="8.5" cy="8.5" r="1.5"/>
+                          <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                        Browse Gallery
+                      </button>
+                      <button type="button" class="btn-upload-choice" id="btn-choice-camera">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                          <circle cx="12" cy="13" r="4"/>
+                        </svg>
+                        Use Camera
+                      </button>
+                    </div>
                     <p class="upload-formats">Supports JPEG, PNG, WEBP (Max 10MB)</p>
                   </div>
 
@@ -328,7 +346,11 @@
 
       </section>
 
-      <!-- SCREEN 2: ANALYSIS + RESULT SCREEN -->
+    </main>
+
+
+  </div>
+
       <section id="screen-result" class="screen-view">
         <div class="main-content-inner">
 
@@ -561,11 +583,6 @@
         </div><!-- /main-content-inner -->
 
       </section>
-
-    </main>
-
-
-  </div>
 
   <script src="script.js"></script>
   <script>
