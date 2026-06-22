@@ -63,9 +63,14 @@ let animationFrameId = null;
  * ------------------------------------------------------------- */
 async function loadConfig() {
   try {
-    let response = await fetch('/.env');
-    if (!response.ok) {
-      // Fallback to Vercel Serverless Function
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    let response;
+    if (isLocal) {
+      response = await fetch('/.env');
+      if (!response.ok) {
+        response = await fetch('/api/env');
+      }
+    } else {
       response = await fetch('/api/env');
     }
     if (!response.ok) {
