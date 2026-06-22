@@ -133,19 +133,16 @@ inputProductName.addEventListener('input', updateFormValidation);
 /* -------------------------------------------------------------
  * FILE UPLOAD & PREVIEW MANAGEMENT
  * ------------------------------------------------------------- */
+// Camera button: opens camera specifically
+document.getElementById('btn-choice-camera').addEventListener('click', (e) => {
+  e.stopPropagation(); // prevent uploadZone click from also firing
+  cameraInput.click();
+});
+
+// Clicking anywhere else on the upload zone: opens normal file picker
 uploadZone.addEventListener('click', (e) => {
-  if (e.target.closest('#btn-remove') || e.target === fileInput || e.target === cameraInput) return;
-  
-  const cameraBtn = e.target.closest('#btn-choice-camera');
-  const galleryBtn = e.target.closest('#btn-choice-gallery');
-  
-  if (cameraBtn) {
-    cameraInput.click();
-  } else if (galleryBtn) {
-    fileInput.click();
-  } else {
-    fileInput.click();
-  }
+  if (e.target.closest('#btn-remove') || e.target.closest('#btn-choice-camera') || e.target === fileInput || e.target === cameraInput) return;
+  fileInput.click();
 });
 
 fileInput.addEventListener('change', (e) => {
