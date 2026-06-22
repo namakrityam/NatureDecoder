@@ -198,7 +198,7 @@ body {
   overflow-x: hidden;
   z-index: 600;
   background-color: var(--bg-app);
-  padding: 24px 24px 60px;
+  padding: 105px 24px 60px;
   animation: screenReveal var(--transition-slow) forwards;
 }
 
@@ -2143,7 +2143,7 @@ section[id] {
   align-items: center;
   justify-content: center;
   transition: background-color var(--transition-fast), color var(--transition-fast);
-  z-index: 110;
+  z-index: 9995;
 }
 
 .nav-toggle:hover {
@@ -2193,7 +2193,7 @@ section[id] {
     margin-top: 12px;
     box-shadow: var(--shadow-lg);
     gap: 10px;
-    z-index: 105;
+    z-index: 9992;
   }
 
   .nav-links.mobile-drawer.active {
@@ -2263,6 +2263,7 @@ body.nav-open {
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
+  cursor: pointer;
   transition: all var(--transition-fast);
 }
 
