@@ -1,0 +1,150 @@
+/* Tessareact Compare Component Styles */
+.tessareact-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 500px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f1f5f9;
+  cursor: col-resize;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.tessareact-container.tessareact-dragging {
+  cursor: col-resize;
+}
+
+.tessareact-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  color: #94a3b8;
+  gap: 12px;
+}
+
+.tessareact-placeholder p {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tessareact-image-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tessareact-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.tessareact-label {
+  position: absolute;
+  top: 12px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+.tessareact-label-before {
+  left: 12px;
+}
+
+.tessareact-label-after {
+  right: 12px;
+}
+
+/* Slider */
+.tessareact-slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: all;
+}
+
+.tessareact-slider-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.tessareact-slider-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tessareact-slider-handle:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.tessareact-slider-handle:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+/* Focus styles for accessibility */
+.tessareact-container:focus {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+.tessareact-container:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.tessareact-container:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tessareact-container {
+    aspect-ratio: 4 / 3;
+  }
+
+  .tessareact-slider-handle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .tessareact-slider-handle svg {
+    width: 18px;
+    height: 18px;
+  }
+}

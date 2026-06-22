@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nature Decoder - Homemade Alternatives</title>
+  <meta name="description" content="Find healthier homemade alternatives for packaged food items with Nature Decoder." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="alternative.css" />
+</head>
+<body>
+
+  <!-- Background decorative glows -->
+  <div class="glow-bg glow-1"></div>
+  <div class="glow-bg glow-2"></div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="brand-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 7V5C3 3.89543 3.89543 3 5 3H7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M17 3H19C20.1046 3 21 3.89543 21 5V7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M21 17V19C21 20.1046 20.1046 21 19 21H17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M7 21H5C3.89543 21 3 20.1046 3 19V17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            <rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2" stroke-dasharray="2 2" />
+            <path d="M2 12H22" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" class="scanner-line" />
+          </svg>
+        </div>
+        <span class="brand-name">Nature Decoder</span>
+      </div>
+      <nav class="nav-links">
+        <a href="../index.html" class="btn-back-nav">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Back</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <main class="main-content">
+
+      <!-- Hero Section -->
+      <section class="alt-hero" id="hero">
+        <div class="hero-content">
+          <div class="hero-badge">🥗 Homemade Alternatives</div>
+          <h1 class="hero-title">Find a healthier homemade swap for any packaged food</h1>
+          <p class="hero-subtitle">
+            Just enter the name of a packaged food product — we'll suggest a nutritious homemade alternative
+            that tastes great and is better for your health.
+          </p>
+        </div>
+      </section>
+
+      <!-- Input Section -->
+      <section class="alt-input-section" id="input-section">
+        <div class="section-header center">
+          <h2>What are you craving?</h2>
+          <p>Enter a packaged food item to find its homemade alternative.</p>
+        </div>
+        <div class="card main-card">
+          <form id="alt-form" onsubmit="event.preventDefault(); findAlternative();">
+            <div class="input-group">
+              <label for="food-input" class="input-label">Packaged Food Name</label>
+              <div class="input-wrapper">
+                <input
+                  type="text"
+                  id="food-input"
+                  name="food-input"
+                  placeholder="e.g. Maggi Noodles, Oreo, Lays Chips, Kurkure"
+                  autocomplete="off"
+                  required
+                />
+                <span class="input-focus-border"></span>
+              </div>
+              <p class="input-help-text">Type a product name or brand to find its homemade alternative.</p>
+            </div>
+
+            <!-- Quick Suggestions -->
+            <div class="quick-suggestions">
+              <span class="suggest-label">Popular:</span>
+              <button type="button" class="suggestion-chip" onclick="suggestClick('Maggi Noodles')">Maggi Noodles</button>
+              <button type="button" class="suggestion-chip" onclick="suggestClick('Oreo Biscuit')">Oreo</button>
+              <button type="button" class="suggestion-chip" onclick="suggestClick('Lays Chips')">Lays Chips</button>
+              <button type="button" class="suggestion-chip" onclick="suggestClick('Kurkure')">Kurkure</button>
+              <button type="button" class="suggestion-chip" onclick="suggestClick('Coca Cola')">Coca Cola</button>
+              <button type="button" class="suggestion-chip" onclick="suggestClick('Bournvita')">Bournvita</button>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-primary" id="btn-find-alt">
+                <span>Find Homemade Alternative</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21 21L16.65 16.65M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Results Section -->
+      <section class="alt-results-section hidden" id="results-section">
+        <div class="section-header center">
+          <h2>Your Homemade Alternative</h2>
+        </div>
+
+        <div class="results-container" id="results-container">
+          <!-- Injected by JavaScript -->
+        </div>
+      </section>
+
+      <!-- Loading Section -->
+      <section class="alt-loading-section hidden" id="loading-section">
+        <div class="loading-content card">
+          <div class="loading-spinner">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" stroke-dashoffset="0" stroke-linecap="round" class="loading-circle" />
+            </svg>
+          </div>
+          <h2 class="loader-title">Searching Nature Decoder...</h2>
+          <p class="loader-subtitle">Searching for the best homemade alternative for your food item</p>
+          <div class="loader-bar-wrap">
+            <div class="loader-bar"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Not Found Section -->
+      <section class="alt-notfound-section hidden" id="notfound-section">
+        <div class="notfound-content card">
+          <div class="notfound-icon">😕</div>
+          <h2>No alternative found</h2>
+          <p id="notfound-text">We couldn't find a match for that product. Try another name or check your spelling.</p>
+          <button type="button" class="btn-secondary" onclick="tryAgain()">Try Another</button>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section class="alt-about" id="about">
+        <div class="about-container">
+          <div class="about-image-wrapper">
+            <div class="about-illustration">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="38" stroke="var(--primary)" stroke-width="2" stroke-dasharray="4 4" fill="none" />
+                <path d="M40 20V60M20 40H60" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" />
+                <circle cx="40" cy="40" r="12" fill="var(--primary)" fill-opacity="0.15" stroke="var(--primary)" stroke-width="2" />
+              </svg>
+            </div>
+          </div>
+          <h2>Why Homemade Alternatives?</h2>
+          <p>
+            Packaged foods are often loaded with preservatives, excess sodium, unhealthy fats, and hidden sugars.
+            Homemade versions give you complete control over ingredients — you can enjoy the same flavors
+            with real, whole foods that nourish your body. Nature Decoder helps you bridge the gap
+            between convenience and health by suggesting simple, traditional alternatives you can make at home.
+          </p>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="landing-footer">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="brand-logo small">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 7V5C3 3.89543 3.89543 3 5 3H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M17 3H19C20.1046 3 21 3.89543 21 5V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M21 17V19C21 20.1046 20.1046 21 19 21H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M7 21H5C3.89543 21 3 20.1046 3 19V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <span>Nature Decoder</span>
+          </div>
+          <p class="footer-copyright">&copy; 2026 Nature Decoder. Developed by Kanak Goyal</p>
+          <div class="footer-links">
+            <a href="#hero">Home</a>
+            <a href="#input-section">Find Alternative</a>
+            <a href="#about">About</a>
+          </div>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="alternative.js"></script>
+</body>
+</html>

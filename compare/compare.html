@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Products - Nature Decoder AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="compare.css">
+</head>
+<body>
+    <div class="glow-bg glow-1"></div>
+    <div class="glow-bg glow-2"></div>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="../index.html" class="brand-link">
+                    <div class="brand-logo">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 7V5C3 3.89543 3.89543 3 5 3H7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                            <path d="M17 3H19C20.1046 3 21 3.89543 21 5V7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                            <path d="M21 17V19C21 20.1046 20.1046 21 19 21H17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                            <path d="M7 21H5C3.89543 21 3 20.1046 3 19V17" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <span class="brand-name">Nature Decoder <span class="brand-ai">AI</span></span>
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="../index.html" class="btn-back-nav">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Back</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <main class="main-content">
+            <div class="compare-header">
+                <div class="hero-badge">Smart Comparison</div>
+                <h1 class="hero-title">Compare Packaged Food</h1>
+                <p class="hero-subtitle">Upload nutrition label images for 2–3 products. AI reads the ingredients automatically and picks the healthiest choice.</p>
+                <div id="api-status" class="api-status hidden"></div>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="compare-tabs">
+                <button class="tab-btn active" data-tab="quick-compare">Quick Compare Labels</button>
+                <button class="tab-btn" data-tab="scanned-history">Scanned History</button>
+            </div>
+
+            <!-- TAB 1 CONTENT: QUICK COMPARE VIA IMAGE UPLOAD -->
+            <div id="quick-compare-tab" class="tab-content">
+                <div class="quick-compare-grid">
+                    <!-- Product 1 Card -->
+                    <div class="product-input-card">
+                        <div class="card-header-badge badge-p1">Product 1</div>
+                        <div class="input-group">
+                            <label for="p1-name" class="input-label">Product Name (Optional)</label>
+                            <input type="text" id="p1-name" class="p-name-input" placeholder="e.g. Oreo Cookies">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Upload Nutrition Label Image</label>
+                            <div class="p-upload-zone" id="p1-upload-zone">
+                                <input type="file" id="p1-file" class="p-file-input hidden" accept="image/*">
+                                <button type="button" class="btn-secondary btn-upload-label" id="p1-upload-btn">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                                    <span>Choose Image</span>
+                                </button>
+                                <span class="p-file-name" id="p1-file-name">No file chosen</span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="p1-preset" class="input-label">Or Fill with Preset</label>
+                            <select id="p1-preset" class="p-preset-select">
+                                <option value="">-- Choose Preset --</option>
+                                <option value="oreo">Oreo Cookies (Cream Chocolate)</option>
+                                <option value="bourbon">Bourbon Biscuits (Cream Chocolate)</option>
+                                <option value="parleg">Parle-G Biscuit (Sweet Wheat)</option>
+                                <option value="marie">Marie Gold Biscuit (Low Fat)</option>
+                                <option value="digestive">Digestive Biscuit (High Fiber)</option>
+                                <option value="maggi">Maggi Masala Noodles</option>
+                                <option value="bread">Whole Wheat Bread</option>
+                                <option value="yogurt">Greek Yogurt (Unsweetened)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="p1-ingredients" class="input-label">Ingredients List</label>
+                            <textarea id="p1-ingredients" class="p-ingredients-input" placeholder="Auto-filled from image AI or preset — or paste ingredients here manually"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 Card -->
+                    <div class="product-input-card">
+                        <div class="card-header-badge badge-p2">Product 2</div>
+                        <div class="input-group">
+                            <label for="p2-name" class="input-label">Product Name (Optional)</label>
+                            <input type="text" id="p2-name" class="p-name-input" placeholder="e.g. Maggi Noodles">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Upload Nutrition Label Image</label>
+                            <div class="p-upload-zone" id="p2-upload-zone">
+                                <input type="file" id="p2-file" class="p-file-input hidden" accept="image/*">
+                                <button type="button" class="btn-secondary btn-upload-label" id="p2-upload-btn">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                                    <span>Choose Image</span>
+                                </button>
+                                <span class="p-file-name" id="p2-file-name">No file chosen</span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="p2-preset" class="input-label">Or Fill with Preset</label>
+                            <select id="p2-preset" class="p-preset-select">
+                                <option value="">-- Choose Preset --</option>
+                                <option value="oreo">Oreo Cookies (Cream Chocolate)</option>
+                                <option value="bourbon">Bourbon Biscuits (Cream Chocolate)</option>
+                                <option value="parleg">Parle-G Biscuit (Sweet Wheat)</option>
+                                <option value="marie">Marie Gold Biscuit (Low Fat)</option>
+                                <option value="digestive">Digestive Biscuit (High Fiber)</option>
+                                <option value="maggi">Maggi Masala Noodles</option>
+                                <option value="bread">Whole Wheat Bread</option>
+                                <option value="yogurt">Greek Yogurt (Unsweetened)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="p2-ingredients" class="input-label">Ingredients List</label>
+                            <textarea id="p2-ingredients" class="p-ingredients-input" placeholder="Auto-filled from image AI or preset — or paste ingredients here manually"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 Card -->
+                    <div class="product-input-card">
+                        <div class="card-header-badge badge-p3">Product 3</div>
+                        <div class="input-group">
+                            <label for="p3-name" class="input-label">Product Name (Optional)</label>
+                            <input type="text" id="p3-name" class="p-name-input" placeholder="e.g. Greek Yogurt">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Upload Nutrition Label Image</label>
+                            <div class="p-upload-zone" id="p3-upload-zone">
+                                <input type="file" id="p3-file" class="p-file-input hidden" accept="image/*">
+                                <button type="button" class="btn-secondary btn-upload-label" id="p3-upload-btn">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                                    <span>Choose Image</span>
+                                </button>
+                                <span class="p-file-name" id="p3-file-name">No file chosen</span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="p3-preset" class="input-label">Or Fill with Preset</label>
+                            <select id="p3-preset" class="p-preset-select">
+                                <option value="">-- Choose Preset --</option>
+                                <option value="oreo">Oreo Cookies (Cream Chocolate)</option>
+                                <option value="bourbon">Bourbon Biscuits (Cream Chocolate)</option>
+                                <option value="parleg">Parle-G Biscuit (Sweet Wheat)</option>
+                                <option value="marie">Marie Gold Biscuit (Low Fat)</option>
+                                <option value="digestive">Digestive Biscuit (High Fiber)</option>
+                                <option value="maggi">Maggi Masala Noodles</option>
+                                <option value="bread">Whole Wheat Bread</option>
+                                <option value="yogurt">Greek Yogurt (Unsweetened)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="p3-ingredients" class="input-label">Ingredients List</label>
+                            <textarea id="p3-ingredients" class="p-ingredients-input" placeholder="Auto-filled from image AI or preset — or paste ingredients here manually"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="compare-actions-bar">
+                    <button id="btn-compare-custom" class="btn-primary">
+                        <span>Compare Ingredients</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <button id="btn-clear-custom" class="btn-secondary">Reset Fields</button>
+                </div>
+            </div>
+
+            <!-- TAB 2 CONTENT: SCANNED HISTORY -->
+            <div id="scanned-history-tab" class="tab-content hidden">
+                <div id="compare-empty" class="compare-empty">
+                    <div class="empty-illustration">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 7H16M8 12H16M8 17H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            <rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="2" />
+                        </svg>
+                    </div>
+                    <h3>Your comparison list is empty</h3>
+                    <p>Analyze products in the main app and click "Add to Compare" to see them here.</p>
+                    <a href="../index.html#upload-section" class="btn-primary">Start Analyzing</a>
+                </div>
+            </div>
+
+            <!-- COMPARISON RESULTS VIEW -->
+            <div id="compare-content" class="compare-content hidden">
+                <!-- Best Suggestion Card -->
+                <div class="best-choice-card" id="best-item-card">
+                    <div class="best-tag">🏆 Best Choice</div>
+                    <div class="best-info">
+                        <h2 id="best-product-name">Product Name</h2>
+                        <p id="best-product-reason">Reasoning for being the best choice goes here.</p>
+                        <div id="ai-loading" class="ai-loading hidden">
+                            <div class="ai-loading-spinner"></div>
+                            <span>Analyzing products with AI...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <div class="table-card overflow-x">
+                    <table class="compare-table" id="compare-table">
+                        <thead>
+                            <tr id="table-header">
+                                <th>Metric</th>
+                                <!-- Dynamic columns here -->
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Dynamic rows here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="compare-footer">
+                    <button id="export-btn" class="btn-primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 15V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="7,10 12,15 17,10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Export as Image
+                    </button>
+                    <button id="clear-all" class="btn-secondary">Clear Comparison List</button>
+                </div>
+
+                <!-- HEALTH INSIGHTS -->
+                <section class="insights-section">
+                    <div class="section-header center">
+                        <h2>Health Insights</h2>
+                        <p>Understanding how we compare your food products.</p>
+                    </div>
+                    <div class="insights-grid">
+                        <div class="insight-item">
+                            <h4><span>📈</span> Health Score</h4>
+                            <p>Our proprietary AI score balances nutrient density (proteins, fibers) against processing risks (additives, high sodium). A higher score indicates a more wholesome product.</p>
+                        </div>
+                        <div class="insight-item">
+                            <h4><span>🧂</span> Sodium Content</h4>
+                            <p>High sodium intake is linked to blood pressure concerns. We flag products that exceed 400mg per 100g as moderate to high risk.</p>
+                        </div>
+                        <div class="insight-item">
+                            <h4><span>🍬</span> Added Sugars</h4>
+                            <p>Sugar contributes to empty calories. We prioritize products with natural sweeteners or low total sugar counts (under 5g per 100g).</p>
+                        </div>
+                        <div class="insight-item">
+                            <h4><span>🧪</span> Processing Level</h4>
+                            <p>We analyze the ingredient list for ultra-processed markers like maltodextrin, artificial flavors, and stabilizers that might impact long-term health.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="compare.js"></script>
+</body>
+</html>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nature Decoder - Understand what you are eating</title>
+  <meta name="description"
+    content="Instantly analyze packaged food nutrition labels, get comprehensive health scores, and receive AI-powered dietary advice with Nature Decoder.">
+  <!-- Plus Jakarta Sans Font for premium, clean typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Mobile Navigation Backdrop Overlay -->
+  <div class="nav-backdrop" id="nav-backdrop"></div>
+
+  <!-- Background decorative glows -->
+  <div class="glow-bg glow-1"></div>
+  <div class="glow-bg glow-2"></div>
+
+  <!-- Premium Sticky Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="brand-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 7V5C3 3.89543 3.89543 3 5 3H7" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" />
+            <path d="M17 3H19C20.1046 3 21 3.89543 21 5V7" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" />
+            <path d="M21 17V19C21 20.1046 20.1046 21 19 21H17" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" />
+            <path d="M7 21H5C3.89543 21 3 20.1046 3 19V17" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" />
+            <rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="2"
+              stroke-dasharray="2 2" />
+            <path d="M2 12H22" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" class="scanner-line" />
+          </svg>
+        </div>
+        <span class="brand-name">Nature Decoder <span class="brand-ai">AI</span></span>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="line-t" d="M3 6H21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path class="line-m" d="M3 12H21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path class="line-b" d="M3 18H21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <nav class="nav-links mobile-drawer" id="nav-links">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#upload-section" class="nav-cta">Analyze</a>
+        <a href="compare/compare.html">Compare</a>
+         <a href="alternative/alternative.html">Alternative</a>
+        <a href="#how-it-works">How It Works</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <main class="main-content">
+
+      <!-- SCREEN 1: INPUT AND UPLOAD SCREEN (NOW HOMEPAGE) -->
+      <section id="screen-input" class="screen-view active landing-page">
+
+        <!-- 1. HERO SECTION -->
+        <section class="landing-hero" id="hero">
+          <div class="hero-content">
+            <div class="hero-badge">AI-Powered Nutrition</div>
+            <h1 class="hero-title">Know exactly what you eat before you take a bite</h1>
+            <p class="hero-subtitle">Upload a packaged food nutrition label to instantly get a clean, science-backed
+              health report and custom dietary insights.</p>
+            <div class="hero-ctas">
+              <a href="#upload-section" class="btn-primary hero-btn">Analyze a Product</a>
+              <a href="#how-it-works" class="btn-secondary hero-btn">Learn How It Works</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="mock-report-card">
+              <div class="mock-header">
+                <h3>Oatmeal Cookies</h3>
+                <span class="mock-badge-good">Good</span>
+              </div>
+              <div class="mock-score-ring">
+                <svg viewBox="0 0 100 100" class="mock-svg">
+                  <circle cx="50" cy="50" r="40" class="mock-bg"></circle>
+                  <circle cx="50" cy="50" r="40" class="mock-fill"></circle>
+                </svg>
+                <span class="mock-score-val">82</span>
+              </div>
+              <ul class="mock-points">
+                <li><svg viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                  </svg> High in Fiber</li>
+                <li><svg viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+                  </svg> Whole Grains</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. ABOUT SECTION -->
+        <section class="landing-about" id="about">
+          <div class="about-container">
+            <div class="about-image-wrapper">
+              <img src="assets/about-image.jpeg" alt="About Nature Decoder" class="about-image">
+            </div>
+            <h2>About Nature Decoder</h2>
+            <p>Navigating the grocery store shouldn't require a degree in nutrition. Nature Decoder was built to
+              democratize food science, giving consumers the power to instantly decode misleading labels and hidden
+              additives. By combining state-of-the-art vision models with strict nutritional science, we help you
+              understand exactly what goes into your body.</p>
+          </div>
+        </section>
+
+        <!-- 2. UPLOAD SECTION -->
+        <section class="landing-upload" id="upload-section">
+          <div class="section-header center">
+            <h2>Start Your Analysis</h2>
+            <p>Upload any nutrition label or ingredient list below.</p>
+          </div>
+          <div class="card main-card">
+            <form id="analyzer-form" onsubmit="event.preventDefault();">
+
+              <!-- Product Name Input -->
+              <div class="input-group">
+                <label for="product-name" class="input-label">Product Name</label>
+                <div class="input-wrapper">
+                  <input type="text" id="product-name" name="product-name"
+                    placeholder="e.g. Oreo Original, Maggi Noodles, Parle-G" autocomplete="off" required>
+                  <span class="input-focus-border"></span>
+                </div>
+                <p class="input-help-text">Enter the specific brand or product name for a localized report.</p>
+              </div>
+
+              <!-- Upload Area -->
+              <div class="upload-group">
+                <label class="input-label">Nutrition Label Image</label>
+                <div class="upload-zone" id="upload-zone">
+                  <input type="file" id="file-input" accept="image/*" class="file-hidden">
+
+                  <!-- Empty State -->
+                  <div class="upload-empty-state" id="upload-empty">
+                    <div class="upload-icon-circle">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15"
+                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M17 8L12 3L7 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                        <path d="M12 3V15" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                      </svg>
+                    </div>
+                    <h3 class="upload-title">Drag & drop your label here</h3>
+                    <p class="upload-desc">or click to browse from your device</p>
+                    <p class="upload-formats">Supports JPEG, PNG, WEBP (Max 10MB)</p>
+                  </div>
+
+                  <!-- Preview State -->
+                  <div class="upload-preview-state hidden" id="upload-preview-container">
+                    <div class="preview-wrapper">
+                      <img id="image-preview" src="#" alt="Food label preview">
+                      <button type="button" class="btn-remove-image" id="btn-remove" title="Remove image">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="preview-info">
+                      <span class="preview-filename" id="preview-filename">label_image.jpg</span>
+                      <span class="preview-filesize" id="preview-filesize">1.2 MB</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Action Button -->
+              <button type="button" class="btn-primary" id="btn-analyze" disabled>
+                <span>Analyze Product</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+
+            </form>
+          </div>
+        </section>
+
+        <!-- 3. HOW IT WORKS -->
+        <section class="landing-how" id="how-it-works">
+          <div class="section-header">
+            <h2>How It Works</h2>
+            <p>From a confusing label to a clear decision in seconds.</p>
+          </div>
+          <div class="how-grid">
+            <div class="how-step">
+              <div class="step-num">1</div>
+              <h3>Upload Label</h3>
+              <p>Snap a picture of the ingredients or nutrition table on any packaged food.</p>
+            </div>
+            <div class="how-step">
+              <div class="step-num">2</div>
+              <h3>AI Extraction</h3>
+              <p>Our advanced Vision AI instantly reads and understands the raw nutritional data.</p>
+            </div>
+            <div class="how-step">
+              <div class="step-num">3</div>
+              <h3>Scientific Scoring</h3>
+              <p>Data is processed through a strict, balanced nutritional framework to evaluate health impacts.</p>
+            </div>
+            <div class="how-step">
+              <div class="step-num">4</div>
+              <h3>Get Insights</h3>
+              <p>Receive a clear, actionable report explaining the true quality of the product.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. WHY Nature Decoder AI -->
+        <section class="landing-why" id="why-nutriscan ai">
+          <div class="section-header center">
+            <h2>Why Use Nature Decoder?</h2>
+            <p>We see past the marketing claims.</p>
+          </div>
+          <div class="why-grid">
+            <div class="why-card">
+              <div class="why-icon">🛡️</div>
+              <h3>Unbiased Scoring</h3>
+              <p>Scores are calculated using a deterministic algorithm that balances positive nutrients against hidden
+                processed risks.</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">🔍</div>
+              <h3>Ingredient Translation</h3>
+              <p>We flag misleading ingredient names (like "maltodextrin" or "hydrolysed protein") so you know what you
+                are actually eating.</p>
+            </div>
+            <div class="why-card">
+              <div class="why-icon">💡</div>
+              <h3>Clear Advice</h3>
+              <p>No more guesswork. Get a simple "Good", "Moderate", or "Low" rating alongside a custom AI dietary
+                recommendation.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. SAMPLE REPORT PREVIEW -->
+        <section class="landing-sample" id="sample-report">
+          <div class="sample-content">
+            <h2>Real Results You Can Trust</h2>
+            <p>Our reports break down exactly what makes a product healthy or concerning, giving you the confidence to
+              make better choices for your family.</p>
+            <a href="#upload-section" class="btn-primary hero-btn">Try It Now</a>
+          </div>
+          <div class="sample-visual">
+            <div class="mock-result-ui">
+              <div class="mock-result-header">
+                <h4>Maggi Noodles</h4>
+                <span class="mock-badge-warning">Moderate</span>
+              </div>
+              <div class="mock-result-body">
+                <div class="mock-stat"><span>Score</span><strong>48/100</strong></div>
+                <div class="mock-list">
+                  <div class="mock-item negative">High Sodium Risk</div>
+                  <div class="mock-item negative">Refined Flour</div>
+                  <div class="mock-item positive">Contains Iron</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. FOOTER -->
+        <footer class="landing-footer">
+          <div class="footer-content">
+            <div class="footer-brand">
+              <div class="brand-logo small">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 7V5C3 3.89543 3.89543 3 5 3H7" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" />
+                  <path d="M17 3H19C20.1046 3 21 3.89543 21 5V7" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" />
+                  <path d="M21 17V19C21 20.1046 20.1046 21 19 21H17" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" />
+                  <path d="M7 21H5C3.89543 21 3 20.1046 3 19V17" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" />
+                </svg>
+              </div>
+              <span>NutriScan <strong>AI</strong></span>
+            </div>
+            <p class="footer-copyright">&copy; 2026 Nature Decoder. Developed by Kanak Goyal</p>
+            <div class="footer-links">
+              <a href="#hero">Home</a>
+              <a href="#how-it-works">How It Works</a>
+              <a href="#upload-section">Scan Label</a>
+            </div>
+          </div>
+        </footer>
+
+      </section>
+
+      <!-- SCREEN 2: ANALYSIS + RESULT SCREEN -->
+      <section id="screen-result" class="screen-view">
+        <div class="main-content-inner">
+
+          <!-- PART A: ANALYZING STATE -->
+          <div id="analyzing-state" class="analyzing-container">
+            <div class="loader-wrapper">
+              <div class="circular-loader">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="45" class="circle-bg"></circle>
+                  <circle cx="50" cy="50" r="45" class="circle-progress"></circle>
+                </svg>
+                <div class="loader-logo">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93"
+                      stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" />
+                  </svg>
+                </div>
+              </div>
+              <div class="scanning-beam-container">
+                <div class="scanning-beam"></div>
+              </div>
+            </div>
+
+            <h2 class="analysis-title">Nature Decoder is working</h2>
+            <p class="analysis-subtitle">Extracting composition and assessing dietary impact...</p>
+
+            <!-- Animated Loading Steps -->
+            <div class="loading-steps">
+              <div class="step-item" id="step-0">
+                <div class="step-icon-wrapper">
+                  <div class="step-spinner"></div>
+                  <div class="step-check hidden">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                </div>
+                <span class="step-text">Reading nutrition facts...</span>
+              </div>
+
+              <div class="step-item" id="step-1">
+                <div class="step-icon-wrapper">
+                  <div class="step-spinner hidden"></div>
+                  <div class="step-check hidden">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                </div>
+                <span class="step-text">Extracting ingredients...</span>
+              </div>
+
+              <div class="step-item" id="step-2">
+                <div class="step-icon-wrapper">
+                  <div class="step-spinner hidden"></div>
+                  <div class="step-check hidden">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                </div>
+                <span class="step-text">Calculating health score...</span>
+              </div>
+
+              <div class="step-item" id="step-3">
+                <div class="step-icon-wrapper">
+                  <div class="step-spinner hidden"></div>
+                  <div class="step-check hidden">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                </div>
+                <span class="step-text">Generating recommendation...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PART B: RESULT SCREEN -->
+          <div id="result-content" class="result-container hidden">
+
+            <!-- Back to Upload (Header control) -->
+            <div class="result-nav">
+              <button type="button" class="btn-text-back" id="btn-back-to-scan">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+                <span>Scan another product</span>
+              </button>
+            </div>
+
+            <!-- Printable/Downloadable Report Wrapper -->
+            <div id="printable-report" class="report-paper">
+
+              <!-- 1. PRODUCT HEADER -->
+              <div class="report-header">
+                <div>
+                  <h1 class="report-product-name" id="result-product-name">OREO ORIGINAL</h1>
+                  <p class="report-subtitle">Food Health Analysis Report</p>
+                </div>
+                <div class="report-meta">
+                  <span class="meta-label">Analyzed on</span>
+                  <span class="meta-value" id="result-date">June 18, 2026 at 7:15 PM</span>
+                </div>
+              </div>
+
+              <div class="report-layout-grid">
+                                <!-- Left Column: Health Score (Important Block) -->
+                <div class="score-card-outer">
+                  <!-- 2. OVERALL HEALTH SCORE -->
+                  <div class="score-card">
+                    <span class="score-card-label">Overall Health Score</span>
+                    <div class="score-circle-wrapper">
+                      <svg class="score-ring-svg" viewBox="0 0 120 120">
+                        <circle cx="60" cy="60" r="52" class="score-ring-bg"></circle>
+                        <circle cx="60" cy="60" r="52" class="score-ring-fill" id="score-circle-fill"></circle>
+                      </svg>
+                      <div class="score-number-display">
+                        <span class="score-num" id="result-score">72</span>
+                        <span class="score-den">/100</span>
+                      </div>
+                    </div>
+                    <div class="score-grade-badge" id="result-grade-badge">
+                      <span id="result-grade-text">Good</span>
+                    </div>
+                    <p class="score-assessment-desc" id="result-assessment-desc">
+                      This product contains a moderate balance of nutrients but features some ingredients to watch out
+                      for.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Right Column: Nutrition Grid (Key Values Only) -->
+                <div class="nutrition-section">
+                  <h3 class="section-title">3. Nutrition Summary <span class="title-sub">(per 100g)</span></h3>
+
+                  <!-- 3. NUTRITION SUMMARY GRID -->
+                  <div class="nutrition-grid" id="nutrition-grid">
+                    <!-- Dynamically populated via script.js -->
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- 4. INGREDIENT ANALYSIS -->
+              <div class="ingredients-section">
+                <h3 class="section-title">4. Ingredient Analysis</h3>
+                <div class="ingredient-insights" id="result-ingredients-list">
+                  <!-- Injected via script.js -->
+                  <div class="ingredient-insight-card">
+                    <div class="ingredient-title-row">
+                      <span class="ingredient-name">Palm Oil</span>
+                      <span class="insight-badge badge-warning">Moderate Risk</span>
+                    </div>
+                    <p class="ingredient-desc">Contains saturated fats and should be consumed in moderation.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5. AI RECOMMENDATION (Trustworthy Health Advisor) -->
+              <div class="recommendation-section">
+                <div class="recommendation-header">
+                  <div class="advisor-avatar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 14c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      <path d="M12 18c-4.42 0-8 2.24-8 5h16c0-2.76-3.58-5-8-5z" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="recommendation-title">5. AI Nutrition Advisor Recommendation</h3>
+                    <p class="recommendation-meta">Personalized dietary synthesis</p>
+                  </div>
+                </div>
+                <div class="recommendation-body">
+                  <p id="result-recommendation">
+                    Oreo Original is a highly processed cookie with a low health score. It contains high amounts of
+                    added
+                    sugar and saturated fats from palm oil. It is not suitable for regular consumption and should be
+                    strictly limited for children. It should be treated as an occasional treat rather than a frequent
+                    snack.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- 6. DOWNLOAD REPORT AREA -->
+            <div class="download-section">
+              <h4 class="download-title">Download This Report</h4>
+              <p class="download-desc">Save a portable copy of the analysis report on your local device.</p>
+              <div class="download-buttons">
+                <!-- PDF Download Button -->
+                <button type="button" class="btn-secondary btn-download" id="btn-download-pdf">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M14 2V8H20M16 13H8M16 17H8" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" />
+                  </svg>
+                  <span>Download PDF</span>
+                </button>
+
+                <!-- DOCX Download Button -->
+                <button type="button" class="btn-secondary btn-download" id="btn-download-docx">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <path d="M12 18V12M9 15h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                  <span>Download DOCX</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div><!-- /main-content-inner -->
+
+      </section>
+
+    </main>
+
+
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('nav-toggle');
+      const links = document.getElementById('nav-links');
+      const backdrop = document.getElementById('nav-backdrop');
+      if (toggle && links && backdrop) {
+        const closeMenu = () => {
+          links.classList.remove('active');
+          toggle.classList.remove('open');
+          backdrop.classList.remove('active');
+          document.body.classList.remove('nav-open');
+        };
+
+        toggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = links.classList.toggle('active');
+          toggle.classList.toggle('open');
+          backdrop.classList.toggle('active', isOpen);
+          document.body.classList.toggle('nav-open', isOpen);
+        });
+        
+        backdrop.addEventListener('click', closeMenu);
+
+        document.addEventListener('click', (e) => {
+          if (!links.contains(e.target) && !toggle.contains(e.target)) {
+            closeMenu();
+          }
+        });
+
+        links.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', closeMenu);
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
