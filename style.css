@@ -133,6 +133,14 @@ body {
   gap: 12px;
 }
 
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
 .brand-logo {
   color: var(--primary);
   display: flex;
@@ -160,6 +168,10 @@ body {
   font-weight: 700;
   margin-left: 2px;
   border: 1px solid rgba(16, 185, 129, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 /* Footer styling */
